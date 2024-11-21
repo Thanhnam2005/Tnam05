@@ -1,3 +1,4 @@
+/* Hiệu ứng động và chuyển động */
 body {
     font-family: 'Arial', sans-serif;
     background: linear-gradient(135deg, #eef2f3, #8e9eab);
@@ -7,18 +8,14 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-}
-
-.container {
-    text-align: center;
-    padding: 20px;
+    animation: fade-in 1.5s ease-in-out;
 }
 
 h1 {
     font-size: 2rem;
     color: #2c3e50;
     margin-bottom: 20px;
-    animation: fade-in 1s ease-in-out;
+    animation: slide-down 1s ease-in-out;
 }
 
 .card {
@@ -28,7 +25,7 @@ h1 {
     padding: 20px;
     width: 100%;
     max-width: 400px;
-    animation: fade-in 1.5s ease-in-out;
+    animation: fade-in 1s ease-in-out;
 }
 
 .drop-zone {
@@ -37,18 +34,17 @@ h1 {
     padding: 20px;
     cursor: pointer;
     transition: background-color 0.3s ease-in-out;
+    animation: bounce 2s infinite ease-in-out;
 }
 
 .drop-zone:hover {
     background-color: #eaf6fb;
+    transform: scale(1.05);
 }
 
-.upload-icon-container {
-    animation: bounce 2s infinite;
-}
-
-.image-preview {
-    margin: 20px 0;
+.upload-icon {
+    fill: #3498db;
+    animation: rotate 3s linear infinite;
 }
 
 .image-preview img {
@@ -78,18 +74,25 @@ h1 {
     cursor: pointer;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: background-color 0.3s ease, transform 0.2s;
+    animation: slide-up 1s ease-in-out;
 }
 
 .btn:hover {
     background: #2980b9;
-    transform: translateY(-2px);
+    transform: translateY(-3px);
 }
 
 .pdf-download {
     margin-top: 20px;
-    animation: slide-in 1s ease-in-out;
+    animation: fade-in-delayed 1s ease-in-out;
 }
 
+.download-icon {
+    fill: #2ecc71;
+    animation: scale-pulse 2s infinite;
+}
+
+/* Keyframes */
 @keyframes fade-in {
     from {
         opacity: 0;
@@ -99,9 +102,31 @@ h1 {
     }
 }
 
-@keyframes slide-in {
+@keyframes fade-in-delayed {
     from {
-        transform: translateY(50px);
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slide-down {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slide-up {
+    from {
+        transform: translateY(20px);
         opacity: 0;
     }
     to {
@@ -116,5 +141,23 @@ h1 {
     }
     50% {
         transform: translateY(-10px);
+    }
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes scale-pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
     }
 }
